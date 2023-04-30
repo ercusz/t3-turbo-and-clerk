@@ -1,15 +1,8 @@
-import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { FlashList } from "@shopify/flash-list";
 import { Stack, useRouter } from "expo-router";
 import React from "react";
-import {
-  Button,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { api, type RouterOutputs } from "~/utils/api";
 
@@ -101,12 +94,10 @@ const Index = () => {
   });
 
   const { user } = useUser();
-  const router = useRouter();
   const { signOut } = useAuth();
 
   const onSignOutPress = async () => {
     await signOut();
-    router.push("/sign-in");
   };
 
   return (
@@ -119,42 +110,35 @@ const Index = () => {
         </Text>
 
         <View className="py-2 text-white">
-          <SignedIn>
-            {user && (
-              <View className="flex items-center flex-row space-x-1 justify-end">
-                <View className="mr-2">
-                  <Text className="text-xl font-semibold text-white text-right">
-                    Hello,{" "}
-                    <Text className="text-2xl text-pink-400 font-extrabold">
-                      {user.fullName}
-                    </Text>{" "}
-                    👋
+          {user && (
+            <View className="flex items-center flex-row space-x-1 justify-end">
+              <View className="mr-2">
+                <Text className="text-xl font-semibold text-white text-right">
+                  Hello,{" "}
+                  <Text className="text-2xl text-pink-400 font-extrabold">
+                    {user.fullName}
+                  </Text>{" "}
+                  👋
+                </Text>
+                <TouchableOpacity onPress={() => void onSignOutPress()}>
+                  <Text className="font-bold uppercase text-pink-400 text-right underline">
+                    Sign out
                   </Text>
-                  <TouchableOpacity onPress={onSignOutPress}>
-                    <Text className="font-bold uppercase text-pink-400 text-right underline">
-                      Sign out
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View className="rounded border-2 border-pink-400">
-                  <Image
-                    className="w-14 h-14"
-                    source={{
-                      uri: user.profileImageUrl,
-                    }}
-                    alt={`Profile image of ${user.fullName}`}
-                  />
-                </View>
+                </TouchableOpacity>
               </View>
-            )}
-          </SignedIn>
-          <SignedOut>
-            <Button
-              onPress={() => router.push("/sign-in")}
-              title="Sign in"
-              color={"#f472b6"}
-            />
-          </SignedOut>
+              <View className="rounded border-2 border-pink-400">
+                <Image
+                  className="w-14 h-14"
+                  source={{
+                    uri: user.profileImageUrl,
+                    width: 56,
+                    height: 56,
+                  }}
+                  alt={`Profile image of ${user.fullName}`}
+                />
+              </View>
+            </View>
+          )}
         </View>
 
         <View className="py-2 flex flex-row justify-between items-center">

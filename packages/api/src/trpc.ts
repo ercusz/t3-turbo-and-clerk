@@ -39,7 +39,7 @@ type AuthContextProps = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
-const createInnerTRPCContext = async ({ auth }: AuthContextProps) => {
+const createInnerTRPCContext = ({ auth }: AuthContextProps) => {
   return {
     auth,
     prisma,
@@ -51,8 +51,8 @@ const createInnerTRPCContext = async ({ auth }: AuthContextProps) => {
  * process every request that goes through your tRPC endpoint
  * @link https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  return await createInnerTRPCContext({ auth: getAuth(opts.req) });
+export const createTRPCContext = (opts: CreateNextContextOptions) => {
+  return createInnerTRPCContext({ auth: getAuth(opts.req) });
 };
 
 /**

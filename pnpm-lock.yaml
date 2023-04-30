@@ -132,7 +132,7 @@ importers:
         specifier: ^7.20.0
         version: 7.20.0
       '@types/react':
-        specifier: ^18.0.27
+        specifier: ^18.2.0
         version: 18.2.0
       '@types/react-native':
         specifier: ^0.71.6
@@ -153,8 +153,8 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       typescript:
-        specifier: ^4.9.4
-        version: 4.9.4
+        specifier: ^5.0.4
+        version: 5.0.4
 
   apps/nextjs:
     dependencies:
@@ -10667,12 +10667,6 @@ packages:
       media-typer: 0.3.0
       mime-types: 2.1.35
     dev: false
-
-  /typescript@4.9.4:
-    resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
 
   /typescript@5.0.4:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}

@@ -1,4 +1,5 @@
 import { useSignIn } from "@clerk/clerk-expo";
+import { type ClerkAPIError } from "@clerk/types";
 import React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -20,9 +21,17 @@ const SignInWithCredentials = () => {
       });
 
       await setSession(completeSignIn.createdSessionId);
-    } catch (err: any) {
-      console.log("Error:> ", err?.status || "");
-      console.log("Error:> ", err?.errors ? JSON.stringify(err.errors) : err);
+    } catch (err: unknown) {
+      const clerkErr = err as {
+        errors?: ClerkAPIError[];
+      };
+
+      console.error(
+        "Error during login:",
+        clerkErr?.errors && clerkErr?.errors?.length > 0
+          ? clerkErr?.errors
+          : err,
+      );
     }
   };
 
@@ -55,7 +64,7 @@ const SignInWithCredentials = () => {
 
       <TouchableOpacity
         className="text-white bg-[#f472b6] hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm py-2.5 mb-2"
-        onPress={onSignInPress}
+        onPress={() => void onSignInPress()}
       >
         <Text className="text-center font-semibold text-white">
           Sign in with Credentials
