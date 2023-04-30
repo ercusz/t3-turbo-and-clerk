@@ -1,10 +1,10 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { trpc } from "../utils/trpc";
-import type { inferProcedureOutput } from "@trpc/server";
 import type { AppRouter } from "@acme/api";
 import { useAuth, UserButton } from "@clerk/nextjs";
+import type { inferProcedureOutput } from "@trpc/server";
+import type { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
+import { api } from "~/utils/api";
 
 const PostCard: React.FC<{
   post: inferProcedureOutput<AppRouter["post"]["all"]>[number];
@@ -20,7 +20,7 @@ const PostCard: React.FC<{
 };
 
 const Home: NextPage = () => {
-  const postQuery = trpc.post.all.useQuery();
+  const postQuery = api.post.all.useQuery();
 
   return (
     <>
@@ -57,7 +57,7 @@ export default Home;
 
 const AuthShowcase: React.FC = () => {
   const { isSignedIn } = useAuth();
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
+  const { data: secretMessage } = api.auth.getSecretMessage.useQuery(
     undefined,
     { enabled: !!isSignedIn },
   );

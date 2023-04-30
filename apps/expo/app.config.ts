@@ -1,10 +1,11 @@
-import { ExpoConfig, ConfigContext } from "@expo/config";
+import type { ConfigContext, ExpoConfig } from "@expo/config";
 
 const CLERK_PUBLISHABLE_KEY = "your-clerk-publishable-key";
 
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "expo",
   slug: "expo",
+  scheme: "expo",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",

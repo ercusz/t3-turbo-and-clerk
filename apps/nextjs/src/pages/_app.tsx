@@ -1,8 +1,8 @@
 // src/pages/_app.tsx
-import "../styles/globals.css";
-import type { AppType } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
-import { trpc } from "../utils/trpc";
+import type { AppType } from "next/app";
+import { api } from "~/utils/api";
+import "../styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   return (
@@ -12,4 +12,4 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   );
 };
 
-export default trpc.withTRPC(MyApp);
+export default api.withTRPC(MyApp);
