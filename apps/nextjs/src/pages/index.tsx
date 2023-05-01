@@ -1,5 +1,6 @@
 import type { AppRouter } from "@acme/api";
-import { useAuth, UserButton } from "@clerk/nextjs";
+import { Button, Card } from "@acme/ui";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import type { inferProcedureOutput } from "@trpc/server";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -34,6 +35,8 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> Turbo
           </h1>
+          <Card title={"Hello"} cta={"asdsadasd"} href={"#"} />
+          <Button />
           <AuthShowcase />
 
           <div className="flex h-[60vh] justify-center overflow-y-scroll px-4 text-2xl">
