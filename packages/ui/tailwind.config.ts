@@ -8,7 +8,5 @@ export default {
     // include packages if not transpiling
     "../../packages/**/*.{js,ts,jsx,tsx}",
   ],
-  // prefix ui lib classes to avoid conflicting with the app
-  prefix: "ui-",
   presets: [baseConfig],
 } satisfies Config;
